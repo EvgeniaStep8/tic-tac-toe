@@ -1,60 +1,11 @@
-const game = document.querySelector(".game");
-const cells = document.querySelectorAll(".cell");
-const endOverlay = document.querySelector(".end-overlay");
-const winner = document.querySelector(".winner");
-const raund = document.querySelector(".raund");
-const players = document.querySelector(".players");
-const newRaundButton = document.querySelector(".new-raund");
-const newGameButton = document.querySelector(".new-game");
-const popup = document.querySelector(".popup");
-const form = document.forms.players;
-const x = document.querySelector("#x");
-const o = document.querySelector("#o");
-const count = document.querySelector(".count");
+import { cells,  x, o, count, raund, endOverlay, winner, winnerCombinations } from "./constants.js";
+import { openPopup } from "./popup.js";
 
 let gameRaund = 1;
 let move = 1;
 const lastAvailableMove = 9;
 let player1 = { count: 0, symbol: "X" };
 let player2 = { count: 0, symbol: "O"};
-
-const winnerCombinations = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-];
-
-const openPopup = () => {
-  popup.classList.add("popup-visible");
-}
-
-const closePopup = () => {
-  popup.classList.remove("popup-visible");
-}
-
-const resetInputs = (form) => {
-  form.querySelectorAll(".input").forEach((input) => {
-    input.value = "";
-  });
-}
-
-const handleFormSubmit = (evt) => {
-  evt.preventDefault();
-  player1.name = form.player1.value;
-  player2.name = form.player2.value;
-
-  players.textContent = `${player1.name} vs ${player2.name}`;
-  x.textContent = `Крестики: ${player1.name}`;
-  o.textContent = `Нолики: ${player2.name}`;
-
- resetInputs(form);
- closePopup();
-};
 
 const resetField = () => {
   cells.forEach((cell) => {
@@ -145,7 +96,7 @@ const handleGameClick = (evt) => {
     if (move > 4) {
       if (checkWinner(player)) {
         endOfGame(player);
-      } else if (move === 9) {
+      } else if (move === lastAvailableMove) {
         endOfGame("draw");
       }
     }
@@ -153,7 +104,4 @@ const handleGameClick = (evt) => {
   }
 };
 
-form.addEventListener("submit", handleFormSubmit);
-game.addEventListener("click", handleGameClick);
-newRaundButton.addEventListener("click", newRaund);
-newGameButton.addEventListener("click", newGame);
+export { newGame, newRaund, handleGameClick, player1, player2 };
