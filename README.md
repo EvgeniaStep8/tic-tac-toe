@@ -7,5 +7,5 @@
 ### Функциональность проекта
 В приложении использованы технологии HTML, CSS и JS. Реализована адаптивная вёрстка под разные расширения экрана. Для сборки приложения использован webpack.
 
-### Ссылка на проект: [tic-tac-toe] (https://evgeniastep8.github.io/tic-tac-toe/)
+### Ссылка на проект: [tic-tac-toe](https://evgeniastep8.github.io/tic-tac-toe/)
 
